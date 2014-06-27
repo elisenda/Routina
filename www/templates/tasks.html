@@ -1,0 +1,17 @@
+ <ion-view title="My Tasks" left-buttons="leftButtons">
+  <ion-content>
+    <div class="list">
+      <ion-toggle ng-repeat="task in tasks | orderBy:'executionDate'">
+                <!--  ng-model="task.arrived"
+                  ng-change="arrivedChange(task)" -->
+        {{ task.name }} next execution date is
+        {{ task.executionDate }}
+          <div ng-hide="task.recurrent==='false'">
+            Repeating it every {{ task.daysFrequency}} days
+          </div>
+
+      </ion-toggle>
+
+    </div>
+  </ion-content>
+</ion-view>
