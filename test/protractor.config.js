@@ -15,6 +15,7 @@ exports.config = {
           },
         allScriptsTimeout: 20000,
           onPrepare: function(){
-                browser.driver.get('http://localhost/routina:80');
+                browser.driver.get('http://localhost:80/routina');
         }
+
 };

@@ -1,12 +1,12 @@
 // Describe a feature
 describe('Main Menu', function(){
         it('given application started menu is hide', function(){
-        		expect(hasClass(element(by.name('body')), 'menu-open')).toBe(false);
+        		expect(element(by.tagName('body')).getAttribute('class')).not.toContain('menu-open');
         });
         it('when menu button clicked', function(){
             element(by.id('menuButton')).click();
         });
         it('then menu must show', function(){
-				expect(hasClass(element(by.name('body')), 'menu-open')).toBe(true);
+				expect(element(by.tagName('body')).getAttribute('class')).toContain('menu-open');
         });
 });
