@@ -1,0 +1,39 @@
+<ion-view title="Create a task">
+<ion-content>
+  <form class="list" ng-show="showForm">
+	<div class="list list-inset"> 
+	 	<div class="item item-input-inset">
+	  		<button class="button button-block" ng-click="submit()">Create</button>
+	  		<button class="button button-block" ng-click="goToTasks()">Cancel</button>
+		</div>
+
+
+		<label class="item item-input">
+		  <input type="text" placeholder="Task Name" ng-model="task.name" />
+		</label>
+	
+		<label class="item item-input">
+			<input type="date" placeholder="Execution Date" ng-model="task.executionDate">
+		</label>
+		
+ 			
+		<label class="item item-input">
+				
+			<input type="number" placeholder="Recurrency" ng-model="task.recurrency.value"/>	
+			<select ng-model="task.recurrency.unit" ng-options="unit for unit in recurrencyUnits">
+ 				<option value=''>- units -</option>  	   	
+  	   	</select>
+ 	    </label>			
+			
+			
+		</label>
+  		
+	</div>
+  </form>
+
+  <div ng-hide="showForm">
+	<pre ng-bind="task | json"></pre>
+	<a href="#/event/tasks">View tasks</a>
+  </div>
+</ion-content>
+</ion-view>

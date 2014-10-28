@@ -1,12 +1,6 @@
-angular.module('ionicApp')
+angular.module('routina')
 
 .controller('MainCtrl', function($scope, $ionicSideMenuDelegate, localStorageService) {
-
-  /*$scope.tasks = [
-      { name : 'T1', executionDate : '2014-10-12', recurrent : 'true', daysFrequency : '30' },
-      { name : 'T4', executionDate : '2014-05-30', recurrent : 'true', daysFrequency : '10' },
-      { name : 'T23', executionDate : '2014-08-12', recurrent : 'false' }
-  ];*/
 
   $scope.tasks = localStorageService.get('tasks');
         if ( $scope.tasks === null) {
@@ -18,9 +12,12 @@ angular.module('ionicApp')
   };
 })
 
-.controller('NewTaskCtrl', function($scope, localStorageService) {
-    $scope.showForm = true;
-    $scope.task = {};
+.controller('NewTaskCtrl', function($scope, $state, localStorageService) {
+   $scope.showForm = true;
+   $scope.task = {};
+   $scope.task.recurrency = {};
+	$scope.recurrencyUnits = ['days', 'months'];
+	
     $scope.submit = function() {
         if(!$scope.task.name) {
             alert('Name required');
@@ -30,28 +27,23 @@ angular.module('ionicApp')
             alert('Date required');
             return;
         }
-        if(!$scope.task.recurrent) {
+        
+        
+/*        if(!$scope.task.recurrency.undefined) {
             $scope.task.recurrent = 'false';
         }
-        $scope.showForm = false;
+  */      $scope.showForm = false;
 
-        //$scope.tasks.push($scope.task);
         $scope.tasks.push($scope.task);
         localStorageService.set('tasks',$scope.tasks);
     };
+    $scope.goToTasks = function () {
+		$state.go('eventmenu.tasks');	  		
+  	};
 
 })
 .controller('TasksCtrl', function($scope, localStorageService) {
 
-    $scope.activity = [];
-    $scope.taskAdded = function(task) {
-        var msg = task.name;
-        msg += ' has benn added';
-        msg += new Date().getMilliseconds();
-        $scope.activity.push(msg);
-        if($scope.activity.length > 3) {
-            $scope.activity.splice(0, 1);
-        }
-    };
+   
 
 });
