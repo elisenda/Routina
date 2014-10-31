@@ -2,3 +2,10 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
+
+.popup-body .datetimepicker {
+  min-height: 221px;
+}
+.popup-body .datetimepicker table {
+  width: 100%;
+}

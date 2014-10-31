@@ -2,7 +2,7 @@
  * Created by zfld3287 on 19/06/2014.
  */
 
-angular.module('routina', ['ionic', 'LocalStorageModule'])
+angular.module('routina', ['ionic', 'ui.bootstrap.datetimepicker', 'LocalStorageModule'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
