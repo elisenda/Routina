@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var protractor = require("gulp-protractor").protractor;
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -47,4 +48,15 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+/*
+* Protractor
+*/
+gulp.task('e2e', function (done) {
+    gulp.src(["./src/tests/*.js"])
+      .pipe(protractor({
+        configFile: "test/protractor.config.js",
+      }))
+      .on('error', function(e) { throw e });
 });
