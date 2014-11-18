@@ -9,3 +9,12 @@ body {
 .popup-body .datetimepicker table {
   width: 100%;
 }
+
+@media (min-width: 600px) {
+.menu-content{
+left: 45px !important;
+width: calc(100% - 45px) !important;
+}
+.menu-left{
+  width:320px !important;
+}

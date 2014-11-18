@@ -66,20 +66,38 @@ angular.module('routina')
   	};
 
 })
-.controller('TasksCtrl', function($scope, $state, localStorageService) {
+.controller('TasksCtrl', function($scope, $ionicSideMenuDelegate, $state, localStorageService) {
 	
 	$scope.checkedTask = function (i) {
 		var task = $scope.tasks[i];
 		console.log('index :' + i + ' task name : ' + task.name + ' checked : ' + task.checked);
 		
-		if (!task.checked) {		
+		//if (!task.checked) {		
 			task.history.push(new Date());
 			task.executionDate = moment().add(task.recurrency.value, task.recurrency.unit);		
-		
+			task.checked = false;
 			$scope.tasks[i] = task;
 			$state.go('eventmenu.tasks');
-		}
+		//}
 	};
+	
+ $scope.swipeRight = function() {
+   console.log("swipeRight");
+  };
+  
+  $scope.swipeLeft = function() {
+   	console.log("swipeLeft");
+  };	
+	
+	$scope.stopDrag = function(){
+   	$ionicSideMenuDelegate.canDragContent(false);
+   	console.log("stopDrag");
+  	};
+  
+   $scope.letDrag = function(){
+   	$ionicSideMenuDelegate.canDragContent(true);
+   	console.log("letDrag");
+  	};
    
 
 });
