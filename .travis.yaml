@@ -1,3 +1,16 @@
 language: node_js
 node_js:
 - "0.11"
+
+env:
+  global:
+    - SAUCE_USERNAME=elisenda
+    - SAUCE_ACCESS_KEY=Eli-2014
+
+addons:
+  sauce_connect: true
+
+before_install:
+  - npm install -g grunt-cli
+  
+ 

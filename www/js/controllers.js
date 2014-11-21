@@ -72,22 +72,36 @@ angular.module('routina')
 		var task = $scope.tasks[i];
 		console.log('index :' + i + ' task name : ' + task.name + ' checked : ' + task.checked);
 		
-		//if (!task.checked) {		
-			task.history.push(new Date());
-			task.executionDate = moment().add(task.recurrency.value, task.recurrency.unit);		
-			task.checked = false;
-			$scope.tasks[i] = task;
-			$state.go('eventmenu.tasks');
-		//}
+		task.history.push(new Date());
+		var nextExecutionDate = moment().add(task.recurrency.value, task.recurrency.unit); 
+		task.executionDate = moment(nextExecutionDate).format('DD-MM-YYYY HH:mm:ss');		
+		task.checked = false;
+		$scope.tasks[i] = task;
+		localStorageService.set('tasks',$scope.tasks);
+		$state.go('eventmenu.tasks');
+		
 	};
 	
- $scope.swipeRight = function() {
-   console.log("swipeRight");
-  };
-  
-  $scope.swipeLeft = function() {
-   	console.log("swipeLeft");
-  };	
+	$scope.removeTask = function(task) {
+		
+		
+		
+	};
+	
+	$scope.getTaskStatus = function(task) {
+		console.log("getTaskStatus " + task.executionDate + "now : " + moment());
+		var executionDate = "";
+		if(moment().isAfter(task.executionDate)) {
+			console.log("OnTime");			
+			return "OnTime";		
+		} else if (moment().isBefore(task.executionDate)) {
+			console.log("Late");
+			return "Late";		
+		}	else {
+				console.log("warning");
+			return "Warning";
+		}	
+	};
 	
 	$scope.stopDrag = function(){
    	$ionicSideMenuDelegate.canDragContent(false);

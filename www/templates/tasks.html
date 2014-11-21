@@ -1,14 +1,13 @@
  <ion-view title="My Tasks" left-buttons="leftButtons">
   <ion-content>
  		<ion-list can-swipe="true">
- 			<ion-item ng-repeat="task in tasks | orderBy:'executionDate'" on-release="letDrag()" on-touch="stopDrag()" on-swipe-right="checkedTask($index)" >
-              <!--div class="card" on-release="letDrag()" on-touch="stopDrag()" on-swipe-right="checkedTask($index)">
-				<!-- ion-checkbox ng-model="checked"></ion-checkbox -->
-						<h1>{{ task.name }}</h1>
-   	     			<h3>Next execution date : {{ task.executionDate  | date:'yyyy-MM-dd HH:mm:ss' }}</h3>
-      	  			<h4>Recurrency : {{ task.recurrency.value}} {{ task.recurrency.unit}}</h4>
-      	  		<!--/div -->
-      	  
+ 			<ion-item ng-repeat="task in tasks | orderBy:'executionDate'" 
+ 				on-release="letDrag()" on-touch="stopDrag()" on-swipe-right="checkedTask($index)" 
+ 				ng-class="{ok: getTaskStatus(task)=='OnTime' , danger: getTaskStatus(task)== 'Late' } " >
+ 				
+ 				<h2>{{ task.name }}</h2>
+   	     	<h3>Next execution date : {{ task.executionDate  | date:'dd-MM-yyyy HH:mm:ss' }}</h3>
+      	  	<h4>Recurrency : {{ task.recurrency.value}} {{ task.recurrency.unit}}</h4>    
          </ion-item> 
 		</ion-list>
  

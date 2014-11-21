@@ -18,3 +18,14 @@ width: calc(100% - 45px) !important;
 .menu-left{
   width:320px !important;
 }
+
+//Color tasks
+.ok ion-item.item {
+	background-color: palegreen;
+}
+.danger ion-item.item {
+	background-color: red;
+}
+.warning ion-item.item {
+	background-color: yellow;
+}
